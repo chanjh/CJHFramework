@@ -7,6 +7,9 @@
 //
 
 #import "CJHBaseVC.h"
+#import <objc/runtime.h>
+
+static char *btnClickAction;
 
 @interface CJHBaseVC ()
 
@@ -49,6 +52,50 @@
     self.tabBarItem.title = _tabBatNames[number];
     self.navigationItem.title = _navBarNames[number];
 }
+// 自定义 navBarItems
+-(void)customNavBarItemWithImage:(NSString *)normalName
+                        highligh:(NSString *)highlighName
+                           title:(NSString *)title
+                            type:(CJHNavBarItemType)type
+                          action:(dispatch_block_t)btnBlock{
+    if (type == CJHNavBarItemLeft) {
+        
+        self.leftNavBarItem = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self customNavBarButton:self.leftNavBarItem normalImage:normalName highligh:highlighName title:title];
+        objc_setAssociatedObject(self.leftNavBarItem, &btnClickAction, btnBlock, OBJC_ASSOCIATION_COPY);
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.leftNavBarItem];
+    } else {
+        
+        self.rightNavBarItem = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self customNavBarButton:self.rightNavBarItem normalImage:normalName highligh:highlighName title:title];
+        objc_setAssociatedObject(self.rightNavBarItem, &btnClickAction, btnBlock, OBJC_ASSOCIATION_COPY);
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.rightNavBarItem];
+    }
+}
+- (void)customNavBarButton:(UIButton *)button
+               normalImage:(NSString *)normalName
+                  highligh:(NSString *)highlighName
+                     title:(NSString *)title {
+    [button setImage:[UIImage imageNamed:normalName] forState:UIControlStateNormal];
+    if (highlighName) {
+        [button setImage:[UIImage imageNamed:highlighName] forState:UIControlStateHighlighted];
+    }
+    if (title) {
+        button.titleLabel.font = [UIFont boldSystemFontOfSize:16.];
+        [button setTitle:title forState:UIControlStateNormal];
+        [button setTitle:title forState:UIControlStateHighlighted];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    }
+    [button sizeToFit];
+    [button addTarget:self action:@selector(actionBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+}
+- (void)actionBtnClick:(UIButton *)button {
+    dispatch_block_t buttonBlock = objc_getAssociatedObject(button, &btnClickAction);
+    if (buttonBlock) {
+        buttonBlock();
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -79,6 +126,8 @@
 -(void)showHudInLastVCAndHideLatterWithCue:(NSString *)cue{
     CJHBaseVC *vc = [self.navigationController.viewControllers firstObject];
     [vc showHudAndHideLatterWithCue:cue];
+    // TODO
+    // 如果该 vc 不是基于 baseVC 的处理
 }
 -(void)showHudWithCue:(NSString *)cue{
     self.HUD.mode = MBProgressHUDModeText;
@@ -92,7 +141,6 @@
     [self.view addSubview:self.HUD];
     [self.HUD showAnimated:YES];
 }
-
 -(void)showHudAndHideLatterWithCue:(NSString *)cue{
     self.HUD.mode = MBProgressHUDModeText;
     self.HUD.label.text = cue;
@@ -100,9 +148,11 @@
     [self.HUD hideAnimated:YES afterDelay:self.showTime];
     [self.HUD showAnimated:YES];
 }
-
 -(void)hideHudLatter{
     [self.HUD hideAnimated:YES afterDelay:self.showTime];
+}
+-(void)hideHudLatterWithTime:(NSInteger)time{
+    [self.HUD hideAnimated:YES afterDelay:time];
 }
 - (void)hideHud{
     [self.HUD hideAnimated:YES];
