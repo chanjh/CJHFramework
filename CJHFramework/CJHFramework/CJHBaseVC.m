@@ -20,7 +20,13 @@
 
 @implementation CJHBaseVC
 
--(instancetype)initWithNumber:(NSUInteger)number{
+-(instancetype)init{
+    self = [super init];
+    self.showTime = 1.5;
+    return self;
+}
+
+-(instancetype)initAsBaseVCWithNumber:(NSUInteger)number{
     self = [super init] ;
     if(self){
         self.iconNames = @[@"icon_home_tabbar", @"icon_Investment_tabbar",
@@ -61,6 +67,14 @@
     [self presentViewController:controller animated:YES completion:nil];
 }
 
+-(void)showAlertWithTitle:(NSString *)title message:(NSString *)message andActions:(NSArray <UIAlertAction *> *)actions{
+    UIAlertController  *controller = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    for (NSInteger i = 0; i < actions.count; i++){
+        [controller addAction:actions[i]];
+    }
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
 #pragma mark ****HUD****
 -(void)showHudInLastVCAndHideLatterWithCue:(NSString *)cue{
     CJHBaseVC *vc = [self.navigationController.viewControllers firstObject];
@@ -83,12 +97,12 @@
     self.HUD.mode = MBProgressHUDModeText;
     self.HUD.label.text = cue;
     [self.view addSubview:self.HUD];
-    [self.HUD hideAnimated:YES afterDelay:showTime];
+    [self.HUD hideAnimated:YES afterDelay:self.showTime];
     [self.HUD showAnimated:YES];
 }
 
 -(void)hideHudLatter{
-    [self.HUD hideAnimated:YES afterDelay:showTime];
+    [self.HUD hideAnimated:YES afterDelay:self.showTime];
 }
 - (void)hideHud{
     [self.HUD hideAnimated:YES];

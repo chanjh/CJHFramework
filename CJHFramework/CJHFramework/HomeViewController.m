@@ -14,7 +14,7 @@
 
 @implementation HomeViewController
 -(instancetype)init{
-    self = [super initWithNumber:0];
+    self = [super initAsBaseVCWithNumber:0];
     if(self){
         
     }

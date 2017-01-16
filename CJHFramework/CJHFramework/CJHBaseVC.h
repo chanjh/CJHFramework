@@ -9,20 +9,29 @@
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
 
+@interface CJHBaseVC : UIViewController
+
 /*
  * 展示时间
  * 用于设置 UIAlertView 和 HUD 等展示时间
  */
-static NSInteger showTime = 1.5;
+@property (assign, nonatomic) NSInteger showTime;
 
-@interface CJHBaseVC : UIViewController
 
--(instancetype)initWithNumber:(NSUInteger)number;
+/*
+ * 对象实例化
+ * 用于设置 tarBar 的 vc
+ */
+-(instancetype)initAsBaseVCWithNumber:(NSUInteger)number;
 
 /*
  * Alert 视图
  */
--(void)showAlertWithTitle:(NSString *)title message:(NSString *)message andCancelTitle:(NSString *)cancel;
+-(void)showAlertWithTitle:(NSString *)title message:(NSString *)message
+           andCancelTitle:(NSString *)cancel;
+
+-(void)showAlertWithTitle:(NSString *)title message:(NSString *)message
+               andActions:(NSArray <UIAlertAction *> *)actions;
 
 /*
  * HUD 视图
