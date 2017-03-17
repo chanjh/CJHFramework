@@ -46,13 +46,23 @@ static char *btnClickAction;
     return self;
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:44/255.0f green:148/255.0f blue:252/255.0f alpha:1];
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    self.HUD = [[MBProgressHUD alloc]initWithView:self.view];
+    self.HUD.removeFromSuperViewOnHide = YES;
+}
 -(void)setTabBatItemWithNumber:(NSUInteger)number{
     self.tabBarItem.image  = [UIImage imageNamed:_iconNames[number]];
     self.tabBarItem.selectedImage = [UIImage imageNamed:_iconSelectedNames[number]];
     self.tabBarItem.title = _tabBatNames[number];
     self.navigationItem.title = _navBarNames[number];
 }
-// 自定义 navBarItems
+
+#pragma mark ****Custom NavBarItems****
 -(void)customNavBarItemWithImage:(NSString *)normalName
                         highligh:(NSString *)highlighName
                            title:(NSString *)title
@@ -95,16 +105,6 @@ static char *btnClickAction;
     if (buttonBlock) {
         buttonBlock();
     }
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:44/255.0f green:148/255.0f blue:252/255.0f alpha:1];
-    [self.navigationController.navigationBar setTitleTextAttributes:
-     @{NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-    self.HUD = [[MBProgressHUD alloc]initWithView:self.view];
-    self.HUD.removeFromSuperViewOnHide = YES;
 }
 #pragma mark ****Alert****
 -(void)showAlertWithTitle:(NSString *)title message:(NSString *)message andCancelTitle:(NSString *)cancel{

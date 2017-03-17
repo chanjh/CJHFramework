@@ -18,6 +18,7 @@
 		0D9187371E2C537B00105295 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D9187351E2C537B00105295 /* HomeViewController.m */; };
 		0D9187381E2C537B00105295 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D9187361E2C537B00105295 /* HomeViewController.xib */; };
 		0D9187401E2C5CC500105295 /* UIColor+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D91873F1E2C5CC500105295 /* UIColor+Extend.m */; };
+		0DF21EEC1E38633A007B983F /* BaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DF21EEB1E38633A007B983F /* BaseRequest.m */; };
 		D811DCC965393D3E73DE2069 /* libPods-CJHFramework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A59B9D1BC2A7A8041935F3FF /* libPods-CJHFramework.a */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,8 @@
 		0D91873A1E2C5B1200105295 /* Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
 		0D91873E1E2C5CC500105295 /* UIColor+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Extend.h"; path = "Category/UIColor+Extend.h"; sourceTree = "<group>"; };
 		0D91873F1E2C5CC500105295 /* UIColor+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Extend.m"; path = "Category/UIColor+Extend.m"; sourceTree = "<group>"; };
+		0DF21EEA1E38633A007B983F /* BaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRequest.h; sourceTree = "<group>"; };
+		0DF21EEB1E38633A007B983F /* BaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRequest.m; sourceTree = "<group>"; };
 		A59B9D1BC2A7A8041935F3FF /* libPods-CJHFramework.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CJHFramework.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7A085CB40EAF6914AD8EBE2 /* Pods-CJHFramework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CJHFramework.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CJHFramework/Pods-CJHFramework.debug.xcconfig"; sourceTree = "<group>"; };
 		D248D0335D30EA333109EE7F /* Pods-CJHFramework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CJHFramework.release.xcconfig"; path = "Pods/Target Support Files/Pods-CJHFramework/Pods-CJHFramework.release.xcconfig"; sourceTree = "<group>"; };
@@ -79,6 +82,8 @@
 		0D0D954C1E23766A006E1896 /* CJHFramework */ = {
 			isa = PBXGroup;
 			children = (
+				0DF21EEA1E38633A007B983F /* BaseRequest.h */,
+				0DF21EEB1E38633A007B983F /* BaseRequest.m */,
 				0D91873D1E2C5C9500105295 /* Category */,
 				0D9187331E2B703800105295 /* AppDelegate */,
 				0D0D957B1E2376C7006E1896 /* CJHBaseVC.h */,
@@ -279,6 +284,7 @@
 				0D0D95791E237695006E1896 /* main.m in Sources */,
 				0D0D95741E237695006E1896 /* AppDelegate.m in Sources */,
 				0D0D95801E237716006E1896 /* CJHFramework.xcdatamodeld in Sources */,
+				0DF21EEC1E38633A007B983F /* BaseRequest.m in Sources */,
 				0D9187401E2C5CC500105295 /* UIColor+Extend.m in Sources */,
 				0D0D957D1E2376C7006E1896 /* CJHBaseVC.m in Sources */,
 				0D9187371E2C537B00105295 /* HomeViewController.m in Sources */,

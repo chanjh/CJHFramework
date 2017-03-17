@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'B43272A2AC02C64B5961FD74FD2A0105'
+               BlueprintIdentifier = 'BA7DB46836E43A059C82AED2C6C97F26'
                BlueprintName = 'Pods-CJHFramework'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libPods-CJHFramework.a'>
